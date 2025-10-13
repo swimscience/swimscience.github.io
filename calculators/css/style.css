@@ -1,0 +1,12 @@
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+dl#results dt {
+    font-weight: 600;
+}
+
+dl#results dd {
+    margin: 0;
+    font-size: 1.125rem;
+}

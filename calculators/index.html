@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming Pace Calculator - SwimAnalytics</title>
+    <meta name="description" content="Free swimming pace calculator that helps swimmers convert distance and time into pace per 100m. Built by SwimAnalytics.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "XXXXXXXXXX");
+    </script>
+</head>
+<body class="bg-gray-50 text-slate-900">
+    <nav class="bg-blue-600 text-white">
+        <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-4">
+            <a class="text-xl font-semibold" href="/">Swim Calculators</a>
+            <a class="rounded bg-yellow-400 px-4 py-2 font-semibold text-blue-900 hover:bg-yellow-300" href="https://swimanalytics.app" target="_blank" rel="noopener">Try SwimAnalytics Pro →</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-4 py-10">
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold">Swimming Pace Calculator</h1>
+            <p class="mt-2 text-lg text-slate-700">Convert race times into pace per 100 meters and build smarter swim workouts. No signup, no ads.</p>
+        </header>
+
+        <section class="rounded-lg bg-white p-6 shadow-md">
+            <h2 class="text-xl font-semibold">Calculate Your Pace</h2>
+            <div class="mt-6 grid gap-6 md:grid-cols-2">
+                <label class="block">
+                    <span class="mb-2 block font-medium">Distance (meters)</span>
+                    <input id="distance" type="number" min="1" class="w-full rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="400">
+                </label>
+                <label class="block">
+                    <span class="mb-2 block font-medium">Time (minutes:seconds)</span>
+                    <div class="flex gap-2">
+                        <input id="minutes" type="number" min="0" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="5">
+                        <input id="seconds" type="number" min="0" max="59" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="20">
+                    </div>
+                </label>
+                <label class="block">
+                    <span class="mb-2 block font-medium">Pool Length (meters)</span>
+                    <select id="poolLength" class="w-full rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none">
+                        <option value="25">25m (Short Course)</option>
+                        <option value="50" selected>50m (Long Course)</option>
+                        <option value="33.3">33⅓m (Training Pool)</option>
+                    </select>
+                </label>
+                <div class="flex items-end">
+                    <button id="calculateBtn" class="w-full rounded bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">Calculate Pace</button>
+                </div>
+            </div>
+            <dl id="results" class="mt-8 grid gap-6 rounded border border-blue-100 bg-blue-50 p-6 text-blue-900 md:grid-cols-2"></dl>
+        </section>
+
+        <section class="prose prose-blue mt-12 max-w-none">
+            <h2>How to Use the Swimming Pace Calculator</h2>
+            <p>Enter your race distance and finishing time to get instant pace splits for every 100 meters and for each pool length. The tool converts minutes and seconds to total time automatically.</p>
+
+            <h2>Why Pace Matters</h2>
+            <p>Understanding your pace per 100 meters helps you plan workouts, nail race strategies, and track improvements over time. Consistent pacing is the difference between hitting your goal time and fading in the final laps.</p>
+
+            <h2>Recommended Next Steps</h2>
+            <ul>
+                <li><strong>Track progress:</strong> Log your race paces inside <a href="https://swimanalytics.app" target="_blank" rel="noopener">SwimAnalytics Pro</a>.</li>
+                <li><strong>Upgrade your gear:</strong> See our <a href="https://swimanalytics.github.io/gear" target="_blank" rel="noopener">editor-tested gear recommendations</a>.</li>
+                <li><strong>Train smarter:</strong> Combine this calculator with our <a href="https://swimanalytics.github.io/workouts" target="_blank" rel="noopener">free swim workouts</a>.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 py-10 text-sm text-slate-300">
+        <div class="container mx-auto grid gap-8 px-4 md:grid-cols-3">
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Free Swim Tools</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:text-white" href="/pace-calculator">Pace Calculator</a></li>
+                    <li><a class="hover:text-white" href="/swolf-calculator">SWOLF Calculator</a></li>
+                    <li><a class="hover:text-white" href="/time-predictor">Time Predictor</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:text-white" href="https://swimanalytics.github.io/apps" target="_blank" rel="noopener">App Comparisons</a></li>
+                    <li><a class="hover:text-white" href="https://swimanalytics.github.io/workouts" target="_blank" rel="noopener">Workout Library</a></li>
+                    <li><a class="hover:text-white" href="https://swimanalytics.github.io/gear" target="_blank" rel="noopener">Gear Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Upgrade</h3>
+                <p>Unlock AI-powered analysis, personalized plans, and progress tracking in SwimAnalytics Pro.</p>
+                <a class="mt-3 inline-block rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500" href="https://swimanalytics.app" target="_blank" rel="noopener">Start Free Trial →</a>
+            </div>
+        </div>
+        <div class="mt-8 px-4 text-center text-xs text-slate-400">
+            <p>SwimAnalytics participa en el Programa de Afiliados de Amazon EU, un programa de publicidad para afiliados diseñado para ofrecer un medio para que los sitios web obtengan comisiones por publicidad y enlazando a Amazon.</p>
+            <p class="mt-2">Contacto: <a class="underline hover:text-slate-200" href="mailto:hola@swimanalytics.app">hola@swimanalytics.app</a></p>
+        </div>
+        <p class="mt-10 text-center">© 2025 SwimAnalytics. Built with GitHub Pages.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

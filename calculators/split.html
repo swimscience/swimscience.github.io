@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming Split Calculator - Plan Perfect Race Splits | SwimAnalytics</title>
+    <meta name="description" content="Calculate target splits for your swimming races. Plan your pacing strategy to achieve your goal time with even or negative splits.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body class="bg-gray-50 text-slate-900">
+    <nav class="bg-blue-600 text-white">
+        <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-4">
+            <a class="text-xl font-semibold" href="index.html">Swim Calculators</a>
+            <a class="rounded bg-yellow-400 px-4 py-2 font-semibold text-blue-900 hover:bg-yellow-300" href="https://swimanalytics.app" target="_blank" rel="noopener">Try SwimAnalytics Pro →</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-4 py-10">
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold">Swimming Split Calculator</h1>
+            <p class="mt-2 text-lg text-slate-700">Plan your race strategy with target splits for each lap. Achieve your goal time with smart pacing.</p>
+        </header>
+
+        <section class="rounded-lg bg-white p-6 shadow-md">
+            <h2 class="text-xl font-semibold">Calculate Race Splits</h2>
+            <div class="mt-6 grid gap-6 md:grid-cols-2">
+                <label class="block">
+                    <span class="mb-2 block font-medium">Race Distance (meters)</span>
+                    <select id="distance" class="w-full rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none">
+                        <option value="50">50m</option>
+                        <option value="100">100m</option>
+                        <option value="200" selected>200m</option>
+                        <option value="400">400m</option>
+                        <option value="800">800m</option>
+                        <option value="1500">1500m</option>
+                    </select>
+                </label>
+                <label class="block">
+                    <span class="mb-2 block font-medium">Pool Length (meters)</span>
+                    <select id="poolLength" class="w-full rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none">
+                        <option value="25">25m (Short Course)</option>
+                        <option value="50" selected>50m (Long Course)</option>
+                    </select>
+                </label>
+                <label class="block">
+                    <span class="mb-2 block font-medium">Goal Time (minutes:seconds)</span>
+                    <div class="flex gap-2">
+                        <input id="minutes" type="number" min="0" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="2">
+                        <input id="seconds" type="number" min="0" max="59" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="30">
+                    </div>
+                </label>
+                <label class="block">
+                    <span class="mb-2 block font-medium">Pacing Strategy</span>
+                    <select id="strategy" class="w-full rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none">
+                        <option value="even">Even Splits (Same pace)</option>
+                        <option value="negative">Negative Splits (Faster finish)</option>
+                        <option value="positive">Positive Splits (Fast start)</option>
+                    </select>
+                </label>
+                <div class="flex items-end md:col-span-2">
+                    <button id="calculateBtn" class="w-full rounded bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">Calculate Splits</button>
+                </div>
+            </div>
+            <div id="results" class="mt-8 hidden">
+                <h3 class="mb-4 text-lg font-semibold">Your Target Splits</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-blue-600 bg-blue-50">
+                                <th class="px-4 py-3 text-left font-semibold">Lap</th>
+                                <th class="px-4 py-3 text-left font-semibold">Distance</th>
+                                <th class="px-4 py-3 text-left font-semibold">Split Time</th>
+                                <th class="px-4 py-3 text-left font-semibold">Cumulative</th>
+                            </tr>
+                        </thead>
+                        <tbody id="splitsTable" class="divide-y divide-slate-200">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-8 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white">
+            <h3 class="text-2xl font-bold">Race Day Execution with SwimAnalytics</h3>
+            <p class="mt-2 text-lg">Get real-time pace alerts during your race and analyze your actual splits vs. planned splits after.</p>
+            <a href="https://swimanalytics.app" class="mt-4 inline-block rounded bg-yellow-400 px-6 py-3 font-bold text-blue-900 hover:bg-yellow-300" target="_blank" rel="noopener">Start Free 7-Day Trial →</a>
+        </section>
+
+        <section class="prose prose-blue mt-12 max-w-none">
+            <h2>Pacing Strategies Explained</h2>
+
+            <h3>Even Splits (Recommended for Most Races)</h3>
+            <p>Maintain the same pace throughout the race. This is the most energy-efficient strategy and recommended for distances 200m and longer. Research shows even pacing leads to faster times for most swimmers.</p>
+
+            <h3>Negative Splits (Advanced Strategy)</h3>
+            <p>Swim the second half faster than the first. This conservative approach ensures you don't fade at the end. Popular in distance events (800m, 1500m) and requires excellent fitness and pacing discipline.</p>
+
+            <h3>Positive Splits (Sprint Strategy)</h3>
+            <p>Go out fast and hold on. Common in 50m and 100m sprints where anaerobic energy systems dominate. Requires excellent technique to maintain efficiency when fatigued.</p>
+
+            <h2>How to Use Race Splits</h2>
+            <ol>
+                <li><strong>Practice in training:</strong> Swim sets at your target split times</li>
+                <li><strong>Memorize key splits:</strong> Know your target times for 50m, 100m, etc.</li>
+                <li><strong>Use pace clocks:</strong> Check your splits during the race</li>
+                <li><strong>Adjust if needed:</strong> Have plan B if you're ahead or behind pace</li>
+            </ol>
+
+            <h2>Recommended Training Tools</h2>
+            <ul>
+                <li><strong>Pace Calculator:</strong> <a href="index.html">Calculate your training paces</a></li>
+                <li><strong>SWOLF Calculator:</strong> <a href="swolf.html">Measure your efficiency</a></li>
+                <li><strong>Swim Watches:</strong> <a href="https://swimanalytics.github.io/gear">Best watches for tracking splits</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 py-10 text-sm text-slate-300">
+        <div class="container mx-auto grid gap-8 px-4 md:grid-cols-3">
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Free Swim Tools</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:text-white" href="index.html">Pace Calculator</a></li>
+                    <li><a class="hover:text-white" href="swolf.html">SWOLF Calculator</a></li>
+                    <li><a class="hover:text-white" href="split.html">Split Calculator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:text-white" href="../apps/index.html">App Comparisons</a></li>
+                    <li><a class="hover:text-white" href="../workouts/index.html">Workout Library</a></li>
+                    <li><a class="hover:text-white" href="../gear/index.html">Gear Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Upgrade</h3>
+                <p>Unlock AI-powered analysis, personalized plans, and progress tracking in SwimAnalytics Pro.</p>
+                <a class="mt-3 inline-block rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500" href="https://swimanalytics.app" target="_blank" rel="noopener">Start Free Trial →</a>
+            </div>
+        </div>
+        <p class="mt-10 text-center">© 2025 SwimAnalytics. Built with GitHub Pages.</p>
+    </footer>
+
+    <script>
+        (function() {
+            const distanceSelect = document.getElementById('distance');
+            const poolLengthSelect = document.getElementById('poolLength');
+            const minutesInput = document.getElementById('minutes');
+            const secondsInput = document.getElementById('seconds');
+            const strategySelect = document.getElementById('strategy');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultsEl = document.getElementById('results');
+            const splitsTableEl = document.getElementById('splitsTable');
+
+            function formatTime(totalSeconds) {
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = (totalSeconds % 60).toFixed(2);
+                return `${minutes}:${seconds.padStart(5, '0')}`;
+            }
+
+            function calculate() {
+                const distance = Number(distanceSelect.value);
+                const poolLength = Number(poolLengthSelect.value);
+                const minutes = Number(minutesInput.value) || 0;
+                const seconds = Number(secondsInput.value) || 0;
+                const strategy = strategySelect.value;
+                const goalTime = minutes * 60 + seconds;
+
+                if (goalTime <= 0) {
+                    alert('Please enter a valid goal time');
+                    return;
+                }
+
+                const numLaps = distance / poolLength;
+                const splits = [];
+                let cumulative = 0;
+
+                // Calculate splits based on strategy
+                for (let i = 0; i < numLaps; i++) {
+                    let splitTime;
+
+                    if (strategy === 'even') {
+                        splitTime = goalTime / numLaps;
+                    } else if (strategy === 'negative') {
+                        // First half: 52% of time, Second half: 48% of time
+                        const halfPoint = numLaps / 2;
+                        if (i < halfPoint) {
+                            splitTime = (goalTime * 0.52) / halfPoint;
+                        } else {
+                            splitTime = (goalTime * 0.48) / halfPoint;
+                        }
+                    } else { // positive
+                        // First half: 48% of time, Second half: 52% of time
+                        const halfPoint = numLaps / 2;
+                        if (i < halfPoint) {
+                            splitTime = (goalTime * 0.48) / halfPoint;
+                        } else {
+                            splitTime = (goalTime * 0.52) / halfPoint;
+                        }
+                    }
+
+                    cumulative += splitTime;
+                    splits.push({
+                        lap: i + 1,
+                        distance: (i + 1) * poolLength,
+                        splitTime: splitTime,
+                        cumulative: cumulative
+                    });
+                }
+
+                // Display splits
+                splitsTableEl.innerHTML = '';
+                splits.forEach((split, idx) => {
+                    const row = document.createElement('tr');
+                    row.className = idx % 2 === 0 ? 'bg-slate-50' : 'bg-white';
+                    row.innerHTML = `
+                        <td class="px-4 py-3 font-medium">${split.lap}</td>
+                        <td class="px-4 py-3">${split.distance}m</td>
+                        <td class="px-4 py-3 font-semibold text-blue-600">${formatTime(split.splitTime)}</td>
+                        <td class="px-4 py-3">${formatTime(split.cumulative)}</td>
+                    `;
+                    splitsTableEl.appendChild(row);
+                });
+
+                resultsEl.classList.remove('hidden');
+
+                // Track with Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'calculate', {
+                        'event_category': 'calculator',
+                        'event_label': 'splits',
+                        'value': distance
+                    });
+                }
+            }
+
+            calculateBtn.addEventListener('click', calculate);
+
+            // Allow Enter key to calculate
+            [minutesInput, secondsInput].forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') calculate();
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

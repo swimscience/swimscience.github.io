@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Swim Training Apps - SwimAnalytics Comparison</title>
+    <meta name="description" content="Side-by-side comparison of the best swim training apps with pricing, features, and free trial info.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-6">
+            <div>
+                <p class="text-sm uppercase tracking-wide text-blue-500">Swim App Intelligence</p>
+                <h1 class="text-3xl font-bold">SwimAnalytics vs The World</h1>
+                <p class="mt-2 text-slate-600">Pick the right digital coach for your next training block.</p>
+            </div>
+            <a class="rounded bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-500" href="https://swimanalytics.app" target="_blank" rel="noopener">Start Free Trial →</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <section class="mb-10 flex flex-wrap items-center justify-between gap-4">
+            <div>
+                <h2 class="text-2xl font-semibold">Compare Swim Training Apps</h2>
+                <p class="text-slate-600">Filter by focus area to match your training needs.</p>
+            </div>
+            <select id="focusSelect" class="rounded border border-slate-300 px-4 py-2 focus:border-blue-500 focus:outline-none">
+                <option value="all">All use cases</option>
+                <option value="analytics">Deep analytics</option>
+                <option value="workouts">Workout library</option>
+                <option value="technique">Technique feedback</option>
+            </select>
+        </section>
+
+        <div class="overflow-x-auto rounded-lg bg-white shadow">
+            <table class="min-w-full divide-y divide-slate-200" id="comparisonTable">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th scope="col">App</th>
+                        <th scope="col">Best For</th>
+                        <th scope="col">Key Features</th>
+                        <th scope="col">Price / month</th>
+                        <th scope="col">Free Trial</th>
+                        <th scope="col">Learn More</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200"></tbody>
+            </table>
+        </div>
+
+        <section class="prose mt-12 max-w-none">
+            <h2>How SwimAnalytics Stacks Up</h2>
+            <p>SwimAnalytics is the only platform combining AI-powered stroke analysis with coach-backed training plans. We integrate directly with Garmin, FORM, and Apple Watch exports. Use the free trial to import your last race video and get actionable insights.</p>
+            <h3>Evaluation Criteria</h3>
+            <ul>
+                <li><strong>Accuracy:</strong> We measured how reliable each app is at detecting stroke rate, splits, and SWOLF.</li>
+                <li><strong>Coaching:</strong> Does the app provide actionable next steps or generic tips?</li>
+                <li><strong>Pricing:</strong> We looked for transparent tiers with meaningful free trials.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white py-8 text-sm text-slate-600">
+        <div class="container mx-auto flex flex-col gap-4 px-4 md:flex-row md:items-center md:justify-between">
+            <p>© 2025 SwimAnalytics Comparisons</p>
+            <div class="flex gap-6">
+                <a class="hover:text-slate-900" href="https://swimanalytics.github.io/calculators" target="_blank" rel="noopener">Calculators</a>
+                <a class="hover:text-slate-900" href="https://swimanalytics.github.io/gear" target="_blank" rel="noopener">Gear Lab</a>
+                <a class="hover:text-slate-900" href="https://swimanalytics.github.io/workouts" target="_blank" rel="noopener">Workouts</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

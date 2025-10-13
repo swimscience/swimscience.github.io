@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Swim Workouts Library - SwimAnalytics</title>
+    <meta name="description" content="Download elite swim workouts categorized by distance, focus, and skill level.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-950 via-slate-950 to-blue-900 text-slate-100">
+    <header class="border-b border-slate-800 bg-slate-950/60 backdrop-blur">
+        <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-6">
+            <div>
+                <p class="text-sm uppercase tracking-[0.4em] text-blue-300">SwimAnalytics Workouts</p>
+                <h1 class="text-3xl font-bold">Free Swim Set Library</h1>
+                <p class="mt-2 max-w-2xl text-slate-300">Filter by distance and focus to build the perfect practice. All workouts are coach-tested and ready to import into SwimAnalytics.</p>
+            </div>
+            <a class="rounded bg-yellow-400 px-5 py-3 font-semibold text-slate-900 transition hover:bg-yellow-300" href="https://swimanalytics.app" target="_blank" rel="noopener">Plan My Season →</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-10">
+        <section class="mb-10 grid gap-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-6 shadow-lg backdrop-blur md:grid-cols-4">
+            <label class="block">
+                <span class="text-sm uppercase text-slate-400">Distance</span>
+                <select id="distanceFilter" class="mt-2 w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:border-blue-400 focus:outline-none">
+                    <option value="all">Any</option>
+                    <option value="2000">≤ 2k</option>
+                    <option value="3000">2-3k</option>
+                    <option value="4000">3-4k</option>
+                    <option value="5000">4k+</option>
+                </select>
+            </label>
+            <label class="block">
+                <span class="text-sm uppercase text-slate-400">Focus</span>
+                <select id="focusFilter" class="mt-2 w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:border-blue-400 focus:outline-none">
+                    <option value="all">Any</option>
+                    <option value="speed">Speed</option>
+                    <option value="endurance">Endurance</option>
+                    <option value="technique">Technique</option>
+                </select>
+            </label>
+            <label class="block">
+                <span class="text-sm uppercase text-slate-400">Stroke</span>
+                <select id="strokeFilter" class="mt-2 w-full rounded border border-slate-700 bg-slate-900 px-3 py-2 text-slate-100 focus:border-blue-400 focus:outline-none">
+                    <option value="all">Any</option>
+                    <option value="free">Freestyle</option>
+                    <option value="im">IM</option>
+                    <option value="kick">Kick</option>
+                </select>
+            </label>
+            <div class="flex items-end">
+                <button id="downloadCsv" class="w-full rounded bg-blue-500 px-4 py-3 font-semibold text-white transition hover:bg-blue-400">Download CSV</button>
+            </div>
+        </section>
+
+        <section id="workoutGrid" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3"></section>
+
+        <section class="prose prose-invert mt-16 max-w-none">
+            <h2>How to Use These Sets</h2>
+            <p>Each workout includes warm-up, main set, and cool-down suggestions. Import the CSV into SwimAnalytics to track splits automatically or use the pace calculator to build variations.</p>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950/60 py-8 text-sm text-slate-400">
+        <div class="container mx-auto flex flex-col gap-4 px-4 md:flex-row md:items-center md:justify-between">
+            <p>© 2025 SwimAnalytics Workouts</p>
+            <div class="flex gap-6">
+                <a class="hover:text-white" href="https://swimanalytics.github.io/calculators" target="_blank" rel="noopener">Calculators</a>
+                <a class="hover:text-white" href="https://swimanalytics.github.io/gear" target="_blank" rel="noopener">Gear Lab</a>
+                <a class="hover:text-white" href="https://swimanalytics.github.io/apps" target="_blank" rel="noopener">App Comparisons</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

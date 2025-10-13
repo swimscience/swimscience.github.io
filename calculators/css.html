@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Calculator - Critical Swim Speed for Training | SwimAnalytics</title>
+    <meta name="description" content="Calculate your Critical Swim Speed (CSS) to determine optimal training zones and paces for swimming workouts.">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body class="bg-gray-50 text-slate-900">
+    <nav class="bg-blue-600 text-white">
+        <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-4">
+            <a class="text-xl font-semibold" href="index.html">Swim Calculators</a>
+            <a class="rounded bg-yellow-400 px-4 py-2 font-semibold text-blue-900 hover:bg-yellow-300" href="https://swimanalytics.app" target="_blank" rel="noopener">Try SwimAnalytics Pro →</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto max-w-4xl px-4 py-10">
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold">Critical Swim Speed (CSS) Calculator</h1>
+            <p class="mt-2 text-lg text-slate-700">Calculate your CSS to establish training zones and optimize your swimming workouts.</p>
+        </header>
+
+        <section class="rounded-lg bg-white p-6 shadow-md">
+            <h2 class="text-xl font-semibold">Calculate Your CSS</h2>
+            <p class="mt-2 text-sm text-slate-600">Swim two time trials (400m and 200m) at maximum effort with full rest between.</p>
+
+            <div class="mt-6 grid gap-6 md:grid-cols-2">
+                <div class="md:col-span-2">
+                    <h3 class="font-semibold text-blue-900">Time Trial #1 - 400m Maximum Effort</h3>
+                </div>
+                <label class="block">
+                    <span class="mb-2 block font-medium">400m Time (minutes:seconds)</span>
+                    <div class="flex gap-2">
+                        <input id="min400" type="number" min="0" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="5">
+                        <input id="sec400" type="number" min="0" max="59" step="0.1" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="30">
+                    </div>
+                </label>
+
+                <div class="md:col-span-2 mt-4">
+                    <h3 class="font-semibold text-blue-900">Time Trial #2 - 200m Maximum Effort</h3>
+                </div>
+                <label class="block">
+                    <span class="mb-2 block font-medium">200m Time (minutes:seconds)</span>
+                    <div class="flex gap-2">
+                        <input id="min200" type="number" min="0" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="2">
+                        <input id="sec200" type="number" min="0" max="59" step="0.1" class="w-1/2 rounded border border-slate-200 px-3 py-2 focus:border-blue-600 focus:outline-none" placeholder="40">
+                    </div>
+                </label>
+
+                <div class="flex items-end md:col-span-2">
+                    <button id="calculateBtn" class="w-full rounded bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">Calculate CSS & Training Zones</button>
+                </div>
+            </div>
+
+            <div id="results" class="mt-8 hidden">
+                <div class="rounded-lg border border-blue-200 bg-blue-50 p-6">
+                    <h3 class="text-center text-sm font-medium uppercase tracking-wide text-blue-600">Your Critical Swim Speed</h3>
+                    <p id="cssValue" class="mt-2 text-center text-5xl font-bold text-blue-900"></p>
+                    <p class="mt-2 text-center text-slate-600">per 100m</p>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="mb-4 text-lg font-semibold">Training Zones</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between rounded-lg border border-green-200 bg-green-50 p-4">
+                            <div>
+                                <p class="font-semibold text-green-900">Zone 1: Easy/Recovery</p>
+                                <p class="text-sm text-green-700">60-70% effort</p>
+                            </div>
+                            <p id="zone1" class="text-lg font-bold text-green-900"></p>
+                        </div>
+                        <div class="flex items-center justify-between rounded-lg border border-blue-200 bg-blue-50 p-4">
+                            <div>
+                                <p class="font-semibold text-blue-900">Zone 2: Aerobic Endurance</p>
+                                <p class="text-sm text-blue-700">70-80% effort</p>
+                            </div>
+                            <p id="zone2" class="text-lg font-bold text-blue-900"></p>
+                        </div>
+                        <div class="flex items-center justify-between rounded-lg border border-yellow-200 bg-yellow-50 p-4">
+                            <div>
+                                <p class="font-semibold text-yellow-900">Zone 3: Threshold</p>
+                                <p class="text-sm text-yellow-700">80-90% effort (CSS pace)</p>
+                            </div>
+                            <p id="zone3" class="text-lg font-bold text-yellow-900"></p>
+                        </div>
+                        <div class="flex items-center justify-between rounded-lg border border-orange-200 bg-orange-50 p-4">
+                            <div>
+                                <p class="font-semibold text-orange-900">Zone 4: VO2 Max</p>
+                                <p class="text-sm text-orange-700">90-95% effort</p>
+                            </div>
+                            <p id="zone4" class="text-lg font-bold text-orange-900"></p>
+                        </div>
+                        <div class="flex items-center justify-between rounded-lg border border-red-200 bg-red-50 p-4">
+                            <div>
+                                <p class="font-semibold text-red-900">Zone 5: Anaerobic</p>
+                                <p class="text-sm text-red-700">95-100% effort</p>
+                            </div>
+                            <p id="zone5" class="text-lg font-bold text-red-900"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-8 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white">
+            <h3 class="text-2xl font-bold">Auto-Calculate CSS from Every Swim</h3>
+            <p class="mt-2 text-lg">SwimAnalytics automatically tracks your CSS and adjusts training zones as you improve.</p>
+            <a href="https://swimanalytics.app" class="mt-4 inline-block rounded bg-yellow-400 px-6 py-3 font-bold text-blue-900 hover:bg-yellow-300" target="_blank" rel="noopener">Start Free 7-Day Trial →</a>
+        </section>
+
+        <section class="prose prose-blue mt-12 max-w-none">
+            <h2>What is Critical Swim Speed (CSS)?</h2>
+            <p>CSS is the theoretical maximum pace you can sustain without fatiguing. It's similar to lactate threshold in running and represents the boundary between aerobic and anaerobic swimming.</p>
+
+            <h2>How to Perform the CSS Test</h2>
+            <ol>
+                <li><strong>Warm up thoroughly:</strong> 800-1000m easy swimming with drills</li>
+                <li><strong>Swim 400m maximum effort:</strong> Record your time accurately</li>
+                <li><strong>Rest completely:</strong> 10-15 minutes easy swimming or rest</li>
+                <li><strong>Swim 200m maximum effort:</strong> Give it everything you have</li>
+                <li><strong>Enter times above:</strong> Calculate your CSS and training zones</li>
+            </ol>
+
+            <h2>Using Training Zones</h2>
+            <p>Each zone targets different energy systems and adaptations:</p>
+
+            <ul>
+                <li><strong>Zone 1:</strong> Active recovery, technique work</li>
+                <li><strong>Zone 2:</strong> Base building, long endurance sets</li>
+                <li><strong>Zone 3:</strong> Threshold work, race pace training</li>
+                <li><strong>Zone 4:</strong> High-intensity intervals, speed endurance</li>
+                <li><strong>Zone 5:</strong> Sprint training, maximum power</li>
+            </ul>
+
+            <h2>How Often to Test CSS</h2>
+            <p>Retest your CSS every 4-6 weeks to track improvements and adjust training zones. Your CSS should improve as fitness increases.</p>
+
+            <h2>More Training Tools</h2>
+            <ul>
+                <li><strong>Pace Calculator:</strong> <a href="index.html">Calculate race paces</a></li>
+                <li><strong>Split Calculator:</strong> <a href="split.html">Plan race strategy</a></li>
+                <li><strong>Training Watches:</strong> <a href="../gear/index.html">Best watches for tracking zones</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 py-10 text-sm text-slate-300">
+        <div class="container mx-auto grid gap-8 px-4 md:grid-cols-3">
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Free Swim Tools</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:text-white" href="index.html">Pace Calculator</a></li>
+                    <li><a class="hover:text-white" href="swolf.html">SWOLF Calculator</a></li>
+                    <li><a class="hover:text-white" href="split.html">Split Calculator</a></li>
+                    <li><a class="hover:text-white" href="css.html">CSS Calculator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a class="hover:text-white" href="../apps/index.html">App Comparisons</a></li>
+                    <li><a class="hover:text-white" href="../workouts/index.html">Workout Library</a></li>
+                    <li><a class="hover:text-white" href="../gear/index.html">Gear Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="mb-3 font-semibold text-white">Upgrade</h3>
+                <p>Unlock AI-powered analysis, personalized plans, and progress tracking in SwimAnalytics Pro.</p>
+                <a class="mt-3 inline-block rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500" href="https://swimanalytics.app" target="_blank" rel="noopener">Start Free Trial →</a>
+            </div>
+        </div>
+        <p class="mt-10 text-center">© 2025 SwimAnalytics. Built with GitHub Pages.</p>
+    </footer>
+
+    <script>
+        (function() {
+            const min400Input = document.getElementById('min400');
+            const sec400Input = document.getElementById('sec400');
+            const min200Input = document.getElementById('min200');
+            const sec200Input = document.getElementById('sec200');
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultsEl = document.getElementById('results');
+            const cssValueEl = document.getElementById('cssValue');
+
+            function formatTime(totalSeconds) {
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = (totalSeconds % 60).toFixed(1);
+                return `${minutes}:${seconds.padStart(4, '0')}`;
+            }
+
+            function calculate() {
+                const time400 = (Number(min400Input.value) || 0) * 60 + (Number(sec400Input.value) || 0);
+                const time200 = (Number(min200Input.value) || 0) * 60 + (Number(sec200Input.value) || 0);
+
+                if (time400 <= 0 || time200 <= 0) {
+                    alert('Please enter valid times for both tests');
+                    return;
+                }
+
+                if (time200 >= time400) {
+                    alert('Your 200m time should be faster than your 400m time');
+                    return;
+                }
+
+                // CSS Formula: (400 - 200) / (T400 - T200)
+                const css = (400 - 200) / (time400 - time200);
+                const cssPer100 = 100 / css; // seconds per 100m
+
+                // Calculate training zones
+                const zones = {
+                    zone1: cssPer100 / 0.65, // 65% of CSS = easy
+                    zone2: cssPer100 / 0.75, // 75% of CSS = endurance
+                    zone3: cssPer100,         // 100% = threshold
+                    zone4: cssPer100 / 0.925, // 92.5% = VO2 max
+                    zone5: cssPer100 / 0.975  // 97.5% = anaerobic
+                };
+
+                // Display results
+                cssValueEl.textContent = formatTime(cssPer100);
+                document.getElementById('zone1').textContent = formatTime(zones.zone1) + '/100m';
+                document.getElementById('zone2').textContent = formatTime(zones.zone2) + '/100m';
+                document.getElementById('zone3').textContent = formatTime(zones.zone3) + '/100m';
+                document.getElementById('zone4').textContent = formatTime(zones.zone4) + '/100m';
+                document.getElementById('zone5').textContent = formatTime(zones.zone5) + '/100m';
+
+                resultsEl.classList.remove('hidden');
+
+                // Track with Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'calculate', {
+                        'event_category': 'calculator',
+                        'event_label': 'css',
+                        'value': Math.round(cssPer100)
+                    });
+                }
+            }
+
+            calculateBtn.addEventListener('click', calculate);
+
+            // Allow Enter key to calculate
+            [min400Input, sec400Input, min200Input, sec200Input].forEach(input => {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') calculate();
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
