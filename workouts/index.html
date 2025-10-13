@@ -8,6 +8,69 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google tag (gtag.js) - Enhanced Tracking -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZEM8T7MH45"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Enhanced configuration
+      gtag('config', 'G-ZEM8T7MH45', {
+        'page_path': window.location.pathname,
+        'site_section': 'workouts',
+        'custom_map': {
+          'dimension1': 'site_section',
+          'dimension2': 'workout_type',
+          'dimension3': 'workout_distance'
+        }
+      });
+
+      // Track SwimAnalytics CTA clicks
+      function trackSwimAnalytics(location, label) {
+        gtag('event', 'swimanalytics_click', {
+          'event_category': 'conversion',
+          'event_action': location,
+          'event_label': label,
+          'value': 10
+        });
+        gtag('event', 'conversion', {
+          'send_to': 'G-ZEM8T7MH45/swimanalytics_conversion',
+          'value': 10,
+          'currency': 'EUR'
+        });
+      }
+
+      // Track workout interactions
+      function trackWorkout(action, workoutType, distance) {
+        gtag('event', 'workout_interaction', {
+          'event_category': 'engagement',
+          'action': action, // 'view', 'download', 'filter'
+          'workout_type': workoutType,
+          'workout_distance': distance
+        });
+      }
+
+      // Auto-track on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track SwimAnalytics links
+        document.querySelectorAll('a[href*="swimanalytics.app"]').forEach(function(link) {
+          link.addEventListener('click', function() {
+            var location = this.closest('header') ? 'header' : 'content';
+            trackSwimAnalytics(location, this.textContent.trim());
+          });
+        });
+
+        // Track CSV download
+        var downloadBtn = document.getElementById('downloadCsv');
+        if (downloadBtn) {
+          downloadBtn.addEventListener('click', function() {
+            trackWorkout('download', 'all', 'csv');
+          });
+        }
+      });
+    </script>
 </head>
 <body class="bg-gradient-to-br from-blue-950 via-slate-950 to-blue-900 text-slate-100">
     <header class="border-b border-slate-800 bg-slate-950/60 backdrop-blur">
