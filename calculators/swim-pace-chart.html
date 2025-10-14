@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Swim Pace Chart | SwimScience</title><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-gray-50"><nav class="bg-blue-600 text-white p-4"><div class="container mx-auto"><a href="index.html" class="text-xl font-bold">SwimScience</a></div></nav>
+<main class="container mx-auto p-8"><h1 class="text-3xl font-bold mb-6">Swimming Pace Chart</h1>
+<div class="bg-white rounded shadow p-4 overflow-auto"><table class="w-full text-sm"><thead><tr class="bg-blue-600 text-white"><th class="p-2">Dist</th><th>3:00</th><th>4:00</th><th>5:00</th><th>6:00</th><th>8:00</th><th>10:00</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="mt-8 prose"><h2>How to Read</h2><p>Find swim time at top, distance at left. Cell shows pace per 100m.</p></div>
+</main><footer class="bg-slate-900 text-white p-6 mt-12"><p class="text-center">© 2025 SwimScience</p></footer>
+<script>const d=[100,200,400,800,1500],t=[180,240,300,360,480,600];
+document.getElementById('tb').innerHTML=d.map(di=>'<tr class="border-b">'+('<td class="p-2 font-bold">'+di+'m</td>'+t.map(ti=>{const p=ti/(di/100),m=Math.floor(p/60),s=Math.round(p%60);return'<td class="p-2 text-center">'+m+':'+(s<10?'0':'')+s+'</td>';}).join(''))+'</tr>').join('');</script>
+</body></html>
