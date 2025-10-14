@@ -55,6 +55,18 @@
         addResult('Pace per 50m', `${pacePer50.toFixed(1)} sec (${formatTime(pacePer50)})`);
         addResult(`${poolLength}m Split`, `${pacePerLap.toFixed(1)} sec (${formatTime(pacePerLap)})`);
         addResult('Projected 1K Time', formatTime(predicted1k));
+
+        // GA4 Event Tracking
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'calculator_use', {
+                'event_category': 'calculator',
+                'event_label': 'pace',
+                'calculator_type': 'pace',
+                'input_distance': distance,
+                'input_time': totalSeconds,
+                'result_pace': Math.round(pacePer100)
+            });
+        }
     }
 
     calculateBtn.addEventListener('click', calculate);
