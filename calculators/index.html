@@ -60,6 +60,35 @@
       }
     }
     </script>
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How do I calculate my swim pace per 100m?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To calculate pace per 100m, divide your total time (in seconds) by the distance (in meters), then multiply by 100. For example, if you swim 400m in 6 minutes (360 seconds), your pace is 360/400*100 = 90 seconds per 100m, or 1:30 per 100m."
+        }
+      },{
+        "@type": "Question",
+        "name": "What is a good swimming pace for beginners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good pace for beginners is typically 2:30-3:00 per 100m for continuous swimming. As you improve, aim for 2:00-2:30 per 100m. Advanced swimmers often swim at 1:30 per 100m or faster."
+        }
+      },{
+        "@type": "Question",
+        "name": "How can I improve my swimming pace?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To improve pace, focus on technique first (reducing drag), then build endurance with consistent training, add interval training at threshold pace, and ensure proper rest and recovery."
+        }
+      }]
+    }
+    </script>
 </head>
 <body class="bg-gray-50 text-slate-900">
     <nav class="bg-blue-600 text-white">
@@ -240,5 +269,6 @@
 
     <script src="js/app.js"></script>
     <script src="js/tracking.js"></script>
+    <script src="js/breadcrumbs.js"></script>
 </body>
 </html>
